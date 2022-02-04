@@ -14,12 +14,11 @@ async function connect() {
         const db = client.db('cars');
 
         const sportsCars = db.collection('SportsCars');
-        const cursorupdate = await sportsCars.updateOne(
-            {company : "mercedes"},
-            {"$set": {"status" : "sold"}}
+        const cursorDelete = await sportsCars.deleteOne(
+            {"series" : "A series"}
         );
 
-        console.log(cursorupdate.modifiedCount);
+        console.log(cursorDelete.deletedCount);
         //display
         const cursorFind = sportsCars.find();
         const data = await cursorFind.toArray();
